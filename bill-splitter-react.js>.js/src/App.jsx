@@ -39,7 +39,7 @@ export default function App() {
   }
   function setfriendshandlerer(newfriend) {
     setfriend((friends) => [...friends, newfriend]);
-    setAddfriend(false);
+    // setAddfriend(false);
   }
 
   function setSelectedfriendhandlerer(friends) {
@@ -66,9 +66,7 @@ export default function App() {
           onSelect={setSelectedfriendhandlerer}
           friendssplit={selectedfriend}
         />
-        {addfriend && (
-          <FormAddFriend onAddfriends={setfriendshandlerer} onClick={friends} />
-        )}
+        {addfriend && <FormAddFriend onAddfriends={setfriendshandlerer} />}
         <Button onClick={addfreindhandlerer}>
           {!addfriend ? "Add friend" : "Close"}
         </Button>
@@ -127,7 +125,7 @@ function Friend({ friend, onSelect, friendssplit }) {
 
 function FormAddFriend({ onAddfriends }) {
   const [name, setname] = useState("");
-  const [image, setimage] = useState("");
+  const [image, setimage] = useState("https://i.pravatar.cc/48");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -137,7 +135,7 @@ function FormAddFriend({ onAddfriends }) {
 
     const newfriend = {
       name,
-      image: `${"https://i.pravatar.cc/48"}?=${id}`,
+      image: `${image}?=${id}`,
       balance: 0,
       id,
     };
@@ -164,7 +162,7 @@ function FormAddFriend({ onAddfriends }) {
         onChange={(e) => setimage(e.target.value)}
       />
 
-      <Button onClick={onAddfriends}>Add</Button>
+      <Button>Add</Button>
     </form>
   );
 }
